@@ -33,6 +33,8 @@ def test_poor_hero(hero, backpack, shop):
 def test_shop_out_of_stock(rich_hero, backpack, shop):
     for _ in range(3):
         shop.buy(rich_hero, backpack, "potion")
+    with pytest.raises(OutOfStockError):
+        shop.buy(rich_hero, backpack, "potion")
 
 def test_full_backpack(rich_hero, backpack, shop):
     rock = Item("rock", 20)
